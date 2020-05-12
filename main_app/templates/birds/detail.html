@@ -4,9 +4,32 @@
 
 <div class="container">
     <h1>Bird Details</h1>
-    <h3>{{ bird.name }}</h3>
-    <p>Size: {{ bird.size }}</p>
-    <p>Description: {{ bird.description }}</p>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <h3>{{ bird.name }}</h3>
+          <p>Size: {{ bird.size }}</p>
+          <p>Description: {{ bird.description }}</p>
+        </div>
+        {% for sighting in bird.sighting_set.all %}
+        <div class="card">
+          <p>Date: {{ sighting.date }}</p>
+          <p>Location: {{ sighting.location }}</p>
+          <p>Notes: {{ sighting.notes }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col">
+          <!--add sighting form-->
+          <div> 
+            <form action="{% url 'new_sighting' bird.id %}" method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
