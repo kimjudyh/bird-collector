@@ -1,24 +1,11 @@
 {% block nav_content %}
-<!--Navbar-->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Bird Collector</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseLinks"
-    aria-controls="collapseLinks" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="collapseLinks">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Home</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'index' %}">Birds</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'new_bird' %}">New Bird</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+  <li class="nav-item active">
+    <a class="nav-link" href="/admin/">Admin</a>
+  </li>
+  <li class="nav-item active">
+    <a class="nav-link" href="{% url 'index' %}">Birds</a>
+  </li>
+  <li class="nav-item active">
+    <a class="nav-link" href="{% url 'new_bird' %}">New Bird</a>
+  </li>
 {% endblock %}

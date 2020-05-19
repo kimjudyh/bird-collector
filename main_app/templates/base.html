@@ -12,9 +12,22 @@
   <title>Bird Collector</title>
 </head>
 <body>
-  {% block nav_content %}   
-  {% include 'nav.html' %}
-  {% endblock %}
+<!--Navbar-->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Bird Collector</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseLinks"
+    aria-controls="collapseLinks" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapseLinks">
+    <ul class="navbar-nav ml-auto">
+      {% block nav_content %}   
+      {% include 'nav.html' %}
+      {% endblock %}
+    </ul>
+  </div>
+</nav>
 
   {% block content %}
   {% endblock %}

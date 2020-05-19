@@ -12,3 +12,7 @@ body {
 .card {
   padding: 5px;
 }
+
+.square {
+  width: 40vh;
+}

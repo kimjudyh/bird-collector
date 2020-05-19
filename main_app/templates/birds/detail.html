@@ -6,11 +6,13 @@
     <h1>Bird Details</h1>
     <div class="row">
       <div class="col">
+        <!--Bird info-->
         <div class="card">
           <h3>{{ bird.name }}</h3>
           <p>Size: {{ bird.size }}</p>
           <p>Description: {{ bird.description }}</p>
         </div>
+        <!--Sightings-->
         {% for sighting in bird.sighting_set.all %}
         <div class="card">
           <p>Date: {{ sighting.date }}</p>
@@ -20,15 +22,49 @@
         {% endfor %}
       </div>
       <div class="col">
-          <!--add sighting form-->
-          <div> 
-            <form action="{% url 'new_sighting' bird.id %}" method="POST">
+        <!--Sighting Form-->
+        <div> 
+          <form action="{% url 'new_sighting' bird.id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!--Nest Materials that Bird has-->
+      <div class="col-6">
+        {% if bird.nest_materials.count %}
+          {% for material in bird.nest_materials.all %}
+          <div class="card square">
+            <h5>{{ material.name }}</h5>
+            <form action="{% url 'assoc_nest' bird.id material.id %}" method="POST">
               {% csrf_token %}
-              {{ form.as_p }}
-              <button class="btn btn-primary" type="submit">Submit</button>
+              <button type="submit" name="remove_nest_material" value="remove_nest_material">Remove</button>
             </form>
           </div>
-        </div>
+          {% endfor %}
+        {% else %}
+          <h3>{{ bird.name }} is not building a nest right now</h3>
+        {% endif %}
+      </div>
+      <!--Nest Materials that Bird Doesn't Have-->
+      <div class="col-6">
+        {% if unused_materials.count %}
+          {% for material in unused_materials.all %}
+          <div class="card square">
+            <h5>{{ material.name }}</h5>
+            <form action="{% url 'assoc_nest' bird.id material.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" name="add_nest_material" value="add_nest_material">Add</button>
+            </form>
+          </div>
+          {% endfor %}
+        {% else %}
+          <h3>{{ bird.name }} used all the nest materials</h3>
+        {% endif %}
+      </div>
     </div>
 </div>
 
