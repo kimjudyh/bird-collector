@@ -22,10 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '%_m%9#e_6xfo(k!ddi1#ktr3qh$uyw=x%b_35u46i5zv)9kudv'
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['BIRD_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ['BIRD_DEBUG']
 
 ALLOWED_HOSTS = []
 
