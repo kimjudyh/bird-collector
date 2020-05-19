@@ -1,1 +1,1 @@
-web: gunicorn {bird_controller_project}.wsgi --log-file -
+web: gunicorn bird_controller_project.wsgi --log-file -
